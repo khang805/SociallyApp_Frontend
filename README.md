@@ -185,7 +185,7 @@ app/src/main/
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/your-username/socially-ui-kit.git
+git clone https://github.com/khang805/SociallyApp_Frontend
 cd socially-ui-kit
 ```
 
