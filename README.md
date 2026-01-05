@@ -1,159 +1,222 @@
 # Socially: Android Social Media UI Kit (Frontend Only)
 
+| **Document Info**    | **Details**              |
+| :------------------- | :----------------------- |
+| **Document Version** | 1.0                      |
+| **Type**             | UI/UX Prototype / UI Kit |
+| **Platform**         | Android (Native)         |
+| **Language**         | Kotlin & XML             |
+| **Architecture**     | MVVM (UI-Centric)        |
+
 ---
 
 ## 1. Introduction
 
-### 1.1. Project Overview
-**"Socially"** is a high-fidelity social networking application prototype built natively for Android. This project is a **pure frontend implementation**, focusing exclusively on modern **Material Design** principles, complex **XML layouts**, and seamless user navigation.
+### 1.1 Project Overview
 
-It serves as a comprehensive **UI Kit** for developers, featuring a robust set of screens including authentication, social feeds, user profiles, and chat interfaces. It operates using **local mock data**, making it an excellent reference for building complex UI architectures without the overhead of backend dependencies (No Firebase, No SQL, No APIs).
+**Socially** is a high-fidelity social networking application prototype built natively for Android. This project is a **pure frontend implementation**, focusing exclusively on modern **Material Design** principles, complex **XML layouts**, and seamless user navigation.
 
-### 1.2. Purpose
-This codebase is designed for Android developers and UI/UX designers to understand:
-* **Complex Layouts:** Implementing `ConstraintLayout` for responsive designs.
-* **Adapter Logic:** Managing multiple view types in `RecyclerView` (e.g., Stories vs. Posts).
-* **Navigation:** Handling fragment transactions and Intent-based navigation.
-* **UI States:** Managing visual states for empty lists, input validation, and toggle buttons.
+It serves as a comprehensive **Android UI Kit**, featuring **20+ XML layout files** that represent fully designed screens including authentication, social feeds, user profiles, messaging, and video call interfaces.
+
+The application operates entirely on **local mock data**, making it an excellent reference for building and showcasing complex UI architectures **without any backend dependencies** (No Firebase, No SQL, No REST APIs).
+
+---
+
+### 1.2 Purpose
+
+This codebase is designed for Android developers and UI/UX designers to understand and practice:
+
+* **Complex Layout Design** using `ConstraintLayout` for responsive UIs
+* **RecyclerView Adapter Logic** with multiple view types (Stories, Posts, Chats)
+* **Navigation Handling** via Activities, Fragments, and Intents
+* **UI State Management** such as empty states, input validation, and toggle buttons
 
 ---
 
 ## 2. Technical Architecture
 
-### 2.1. Design Pattern
-The application follows a **UI-Centric MVVM** (Model-View-ViewModel) pattern. This separation of concerns ensures that the UI code remains clean and the data logic is testable.
+### 2.1 Design Pattern
 
+The application follows a **UI-Centric MVVM (Model–View–ViewModel)** architecture to maintain clean separation of concerns.
 
+* **View (XML)**
+  Defines layout structure, styling, and Material components.
 
-* **View (XML):** Handles the layout structure and styling.
-* **Activity/Fragment:** Binds data to views and handles user interactions (Clicks, Scrolls).
-* **ViewModel:** Manages UI state (e.g., toggling "Like" icons) and fetches data from the Mock Repository.
-* **Model (Mock Data):** Kotlin data classes (`User.kt`, `Post.kt`) populated with static dummy data to simulate a populated application.
+* **Activity / Fragment**
+  Handles user interactions, binds data to UI elements, and manages navigation.
 
-### 2.2. Technology Stack
+* **ViewModel**
+  Maintains UI-related state (e.g., Like button toggle, selected tab state).
 
-| Category | Technology | Usage |
-| :--- | :--- | :--- |
-| **Language** | Kotlin | UI Logic & Adapter bindings. |
-| **Layouts** | XML | UI definition (ConstraintLayout, RelativeLayout). |
-| **Components** | Material Design 3 | Cards, Floating Action Buttons, Bottom Navigation. |
-| **Lists** | RecyclerView | Efficient scrolling lists for Feeds and Chats. |
-| **Images** | CircleImageView | Circular avatars for profiles and stories. |
-| **Navigation** | Intents | Moving between Activities. |
+* **Model (Mock Data)**
+  Kotlin data classes such as `User.kt`, `Post.kt`, and `Message.kt`, populated with static dummy data.
+
+---
+
+### 2.2 Technology Stack
+
+| Category          | Technology                           | Usage                                          |
+| :---------------- | :----------------------------------- | :--------------------------------------------- |
+| **Language**      | Kotlin                               | UI logic, adapters, state handling             |
+| **Layouts**       | XML                                  | ConstraintLayout, LinearLayout, RelativeLayout |
+| **Design System** | Material Design 3                    | Cards, FABs, Bottom Navigation                 |
+| **Lists**         | RecyclerView                         | Feeds, Stories, Chats                          |
+| **Images**        | CircleImageView / ShapeableImageView | Circular avatars                               |
+| **Navigation**    | Intents & Fragments                  | Screen transitions                             |
 
 ---
 
 ## 3. Features & Screen Overview
 
-This UI Kit includes over 15+ distinct screens organized into the following modules:
+This UI Kit includes **20+ XML layout files** organized into the following modules:
 
-### 3.1. Authentication Suite
-* **Splash Screen:** Minimalist branding entry point.
-* **Sign Up:** Comprehensive form fields (Name, DOB, Email) with polished input layouts.
-* **Login Flow:**
-    * Main Login Landing (Switch accounts, Sign up option).
-    * Credential Entry (Username/Password).
-    * Forgot Password / Account Recovery UI.
+### 3.1 Authentication Suite
 
-### 3.2. Main Social Feed
-* **Stories Bar:** Horizontal scrollable list (RecyclerView style) for user statuses/stories at the top.
-* **Post Cards:** Detailed layout including:
-    * User Avatar & Username.
-    * Location tags (e.g., "Tokyo, Japan").
-    * Post Image/Media container.
-    * Action Buttons: Like, Comment, Share, Save.
-    * Likes Count & Caption text.
+* **Splash Screen** – Minimal branding entry point
+* **Sign Up Screen** – Name, DOB, Email, Password fields
+* **Login Flow**
 
-### 3.3. Discovery & Search
-* **Explore Grid:** Staggered grid layout for discovering new content.
-* **Category Tabs:** Chip groups for filtering (Shop, Style, Sports, Auto, Music).
-* **Search Interface:**
-    * Recent search history list.
-    * Tabbed results: Top, Accounts, Tags, Places.
+  * Login Landing Screen
+  * Username & Password Entry
+  * Forgot Password / Account Recovery UI
 
-### 3.4. Messaging & Communication
-* **Chat List:** Vertical list of active conversations with last message previews and timestamps.
-* **Direct Message (DM) Screen:**
-    * Incoming/Outgoing message bubbles.
-    * Input bar with attachment and camera icons.
-* **Video Call UI:** Full-screen video interface overlay with controls (Mute, End Call, Flip Camera).
+---
 
-### 3.5. User Profile
-* **Profile Header:**
-    * Circular Profile Image.
-    * Stats: Posts, Followers, Following.
-    * Bio text and website link.
-* **Content Tabs:** Grid view vs. Tagged photos view.
-* **Edit Profile:** Form to update display picture, name, username, and bio.
+### 3.2 Main Social Feed
 
-### 3.6. Activity & Notifications
-* **Activity Feed:** List styling for "New Followers" and "Likes" on photos.
+* **Stories Bar** – Horizontal `RecyclerView` for user stories
+* **Post Cards** featuring:
+
+  * User avatar & username
+  * Location tag (e.g., *Tokyo, Japan*)
+  * Media container
+  * Like, Comment, Share, Save actions
+  * Likes counter & caption
+
+---
+
+### 3.3 Discovery & Search
+
+* **Explore Grid** – Staggered grid layout
+* **Category Filters** – Chip groups (Shop, Style, Sports, Auto, Music)
+* **Search UI**
+
+  * Recent search history
+  * Tabbed results (Top, Accounts, Tags, Places)
+
+---
+
+### 3.4 Messaging & Communication
+
+* **Chat List Screen** – Active conversations with timestamps
+* **Direct Message Screen**
+
+  * Incoming & outgoing message bubbles
+  * Input bar with attachment & camera icons
+* **Video Call UI**
+
+  * Full-screen overlay
+  * Controls: Mute, End Call, Flip Camera
+
+---
+
+### 3.5 User Profile
+
+* **Profile Header**
+
+  * Circular profile image
+  * Stats: Posts, Followers, Following
+  * Bio & website link
+
+* **Content Tabs**
+
+  * Grid view (Posts)
+  * Tagged photos view
+
+* **Edit Profile Screen**
+
+  * Update picture, name, username, bio
+
+---
+
+### 3.6 Activity & Notifications
+
+* **Activity Feed**
+
+  * New followers notifications
+  * Likes on photos
 
 ---
 
 ## 4. Project Structure
 
-The project is organized to separate screens logic from reusable components:
+The project is organized to separate UI logic from reusable components:
 
 ```text
 app/src/main/
 ├── java/com/example/socially/
-│   ├── adapters/       # Recycler Adapters (FeedAdapter, StoryAdapter, ChatAdapter)
-│   ├── models/         # Data Classes (Post, User, Message)
-│   ├── utils/          # MockDataGenerator.kt (Static data source)
-│   └── ui/             # Activities & Fragments
+│   ├── adapters/        # FeedAdapter, StoryAdapter, ChatAdapter
+│   ├── models/          # User, Post, Message data classes
+│   ├── utils/           # MockDataGenerator.kt
+│   └── ui/              # Activities & Fragments
 └── res/layout/
-    ├── activity_login.xml         # Auth Screens
-    ├── fragment_home.xml          # Main Feed
-    ├── item_post.xml              # Single Post Card Design
-    ├── item_chat_message.xml      # Chat Bubbles
-    ├── fragment_profile.xml       # Profile Layout
-    └── activity_video_call.xml    # Video Call Overlay
+    ├── activity_login.xml
+    ├── fragment_home.xml
+    ├── item_post.xml
+    ├── item_chat_message.xml
+    ├── fragment_profile.xml
+    └── activity_video_call.xml
+```
+
+---
 
 ## 5. Setup Guide
-5.1. Prerequisites
-Android Studio: Version Iguana (2023.2.1) or newer.
 
-Android SDK: API Level 24 (Nougat) or higher.
+### 5.1 Prerequisites
 
-Java: JDK 17 (Recommended).
+* **Android Studio:** Iguana (2023.2.1) or newer
+* **Android SDK:** API Level 24 (Android Nougat) or higher
+* **Java:** JDK 17 (Recommended)
 
-5.2. Installation Steps
-1. Clone the Repository
+---
 
-Bash
+### 5.2 Installation Steps
 
-git clone [https://github.com/your-username/socially-ui-kit.git](https://github.com/your-username/socially-ui-kit.git)
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/your-username/socially-ui-kit.git
 cd socially-ui-kit
-2. Open in Android Studio
+```
 
-Launch Android Studio.
+2. **Open in Android Studio**
 
-Select File > Open and navigate to the cloned directory.
+* Launch Android Studio
+* Select **File → Open**
+* Navigate to the cloned project directory
 
-3. Sync Gradle
+3. **Sync Gradle**
 
-Allow Android Studio to download the necessary UI dependencies (Material Components, ConstraintLayout, etc.).
+Allow Android Studio to download required UI dependencies.
 
-Note: No google-services.json, API keys, or backend server setup is required.
+> **Note:** No `google-services.json`, API keys, Firebase, or backend configuration is required.
 
-4. Run the Application
+4. **Run the Application**
 
-Select an Emulator (Pixel 6 or 7 recommended for best density visualization).
+* Select an emulator (Pixel 6 / Pixel 7 recommended)
+* Press the **Run (▶)** button
+* The app launches with pre-filled mock data
 
-Press the Run (▶) button.
-
-The app will launch with pre-filled mock data.
+---
 
 ## 6. Conclusion
-The "Socially" (Frontend) project stands as a robust foundation for any modern social media application. By stripping away backend complexities, it allows developers to focus purely on perfecting the visual experience and user interactions.
 
-This kit provides a pixel-perfect implementation of:
+The **Socially (Frontend-Only)** project provides a strong foundation for building modern social media applications. By eliminating backend complexity, it allows developers to focus purely on **UI polish, interaction design, and layout mastery**.
 
-Complex XML Layouts
+This UI Kit demonstrates:
 
-Multiple ViewType Adapters
+* Complex XML-based layouts
+* Multi-view-type RecyclerView adapters
+* Material Design navigation patterns
 
-Material Design Navigation
-
-It is ready to be connected to any backend solution (REST API, GraphQL, or Firebase) by simply replacing the MockDataGenerator with actual network calls.
+The project is **backend-ready** and can be easily integrated with REST APIs, GraphQL, or Firebase by replacing the `MockDataGenerator` with real data sources.
